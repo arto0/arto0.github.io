@@ -1,215 +1,242 @@
 <!--?xml version="1.0" encoding="UTF-8"?-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fi"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fi">
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="Online-Ristinollan ohjetiedosto">
+	    <meta name="author" content="Arto Rytkönen">
+	    <link rel="icon" href="xoicon.ico">
+	  	<title>Online-Ristinollan ohje</title>
 
-  <title>Online-Ristinollan ohje</title>
-</head>
-<body>
+	    <!-- Bootstrap -->
+	   
+	    <!-- Bootstrap core CSS -->
+	    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
-<h1>
-Online-Ristinollan ohje</h1>
+	    <!-- Starter template -->
+	    <link href="../css/starter-template.css" rel="stylesheet">
 
-<p>
-Tämän ohjeen saa esille valitsemalla ohjelman valikosta Ohje -> Ohje tai painamalla F1.
-</p>
+	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
 
-<h2>Sisältö</h2>
-<ul>
-<li>1. <a href="#onlineristinolla">Online-Ristinolla</a></li>
-<li>2. <a href="#yleisesti">Ristinolla yleisesti</a></li>
-<li>3. <a href="#aloittaminen">Pelin aloitus</a></li>
-<li>4. <a href="#ulkoasu">Ulkoasun muokkaus</a></li>
-<li>5. <a href="#luonti">Luo uusi peli</a>
-	<ol>
-		<li><a href="#vaaraversiopalvelin">Väärä versio peliä luotaessa</a></li>
-	</ol>
-</li>
-<li>6. <a href="#liittyminen">Liity luotuun peliin</a>
-	<ol>
-		<li><a href="#vaaraversioasiakas">Väärä versio peliin yhdistettäessä</a></li>
-	</ol>
-</li>
-<li>7. <a href="#pelitila">Pelitila</a></li>
-<li>8. <a href="#samakone">Pelaaminen samalla koneella</a></li>
-</ul>
+	</head>
+	<body>
+	    <div class="container">
+
+      <div class="starter-template">
+		<h1>Online-Ristinollan ohje</h1>
 
 
+		<p class="lead">Tämän ohjeen saa esille valitsemalla ohjelman valikosta Ohje -> Ohje tai painamalla F1.</p>
 
-<h2 id="onlineristinolla">1. Online-Ristinolla</h2>
+		<h2>Sisältö</h2>
+		<ul>
+		<li>1. <a href="#onlineristinolla">Online-Ristinolla</a></li>
+		<li>2. <a href="#yleisesti">Ristinolla yleisesti</a></li>
+		<li>3. <a href="#aloittaminen">Pelin aloitus</a></li>
+		<li>4. <a href="#ulkoasu">Ulkoasun muokkaus</a></li>
+		<li>5. <a href="#luonti">Luo uusi peli</a>
+			<ol>
+				<li><a href="#vaaraversiopalvelin">Väärä versio peliä luotaessa</a></li>
+			</ol>
+		</li>
+		<li>6. <a href="#liittyminen">Liity luotuun peliin</a>
+			<ol>
+				<li><a href="#vaaraversioasiakas">Väärä versio peliin yhdistettäessä</a></li>
+			</ol>
+		</li>
+		<li>7. <a href="#pelitila">Pelitila</a></li>
+		<li>8. <a href="#samakone">Pelaaminen samalla koneella</a></li>
+		</ul>
 
-<p>
-Online-Ristinolla on asiakas-palvelin -arkkitehtuuriin perustuva 
-kahden henkilön ristinollapeli. Peli toimii moderneissa Windows-käyttöjärjestelmissä,
-joihin on asennettu .NET Runtime-ympäristö (versio 4.5).
-</p>
 
-<h2 id="yleisesti">2. Ristinolla yleisesti</h2>
-<p>
-Ristinolla on kaksin pelattava peli. Pelissä on ruudukko, johon 
-pelaajat vuorotellen merkitsevät pelimerkkinsä, toinen pelaaja ristin ja toinen 
-ympyrän. Pelin tavoitteena on saada määrätyn pituinen peräkkäinen jono omia 
-merkkejä. Jono voi olla vaakasuora, pystysuora tai vinosuora, ja jonon tulee olla
-yhtenäinen. Ensimmäisenä vaaditun mittaisen rivin saava voittaa pelin. 
-Jos ruudukko tulee täyteen ilman, että kumpikaan saa vaadittua riviä, päättyy peli tasan.
-Pelin päättyessä vedetään viiva voittorivin päälle. Ristinollan yksi tyypillinen
-esiintymä on 3 x 3 -kokoisella ruudulla pelattava versio, jossa voittoon tarvitaan
-kolmen merkin jono. Toinen tavallinen tapa on viiden suora, jossa pelialue on mahdollisimman
-suuri. Online-Ristinollalla voidaan peliasetusten muokkaamisen avulla pelata vapaasti
-määriteltävää pelialuetta sekä voittomerkkien määrää.
-</p>
 
-<h2 id="aloittaminen">3. Pelin aloitus</h2>
-<p>Ohjelma käynnistyy kaksoisklikkaamalla Online-Ristinollan kuvaketta työpöydällä.
-Ensimmäisenä avautuu yllä oleva ohjelman päävalikko. Se jakautuu useaan osaan.
-Tiedostovalikosta voi lopettaa pelin, asetusvalikosta voi säätää 
-pelin ulkoasua, ja ohjevalikossa on kerrottu ohjelman perustiedot sekä
-annettu linkki ohjeeseen. Alempana varsinaisessa peliruudussa 
-on tekstikenttä, johon syötetään pelissä käytettävä nimimerkki.
-Teksikentän alapuolella on kaksi nappia: Vasemmanpuoleinen avaa uuden pelin
-luonnin tarjoavan dialogin ja oikeanpuoleinen valmiiseen peliin yhdistämisen 
-mahdollistavan dialogin. Kaikilla napeilla on pikanäppäin, joka on 
-muotoa Alt + kirjain. Painamalla Alt-näppäintä näkyy napeissa alleviivattuna 
-Altin lisäksi tarvittava näppäin. Esciä painamalla ohjelma sulkeutuu.
-</p>
+		<h2 id="onlineristinolla">1. Online-Ristinolla</h2>
 
-<h2 id="ulkoasu">4. Ulkoasun muokkaus</h2>
-<p>
-Pelin ristinollaruudukon ulkoasua voi säätää. Aloitusikkunan 
-tai varsinasen peli-ikkunan ollessa aktiivinen voi ylävalikosta 
-asetukset-vetovalikosta avata ulkoasu-dialogin. Dialogin kuva on
-yllä. Värin voi vaihtaa niin oman kuin vastustajan pelimerkistä, 
-ruudukon pohjasta ja ruudukon viivoista. Jokaisen kohdan nykyinen väri
-näkyy esimerkkinä väripaletissa. Tämän paletin oikealla puolella on
-nappi, joka avaa värinvaihtodialogin. Kun asetukset on tehty, voi 
-ikkunan sulkea esciä, yläreunan ristiä tai sulje-nappia 
-painamalla. Kaikki muutetut asetukset otetaan käyttöön kaikissa
-tapauksissa.
-</p>
+		<p class="lead">
+		Online-Ristinolla on asiakas-palvelin -arkkitehtuuriin perustuva 
+		kahden henkilön ristinollapeli. Peli toimii moderneissa Windows-käyttöjärjestelmissä,
+		joihin on asennettu .NET Runtime-ympäristö (versio 4.5).
+		</p>
 
-<p>
-Valitut asetukset tallennetaan muistiin ja ladataan seuraavan 
-käynnistyksen yhteydessä. Jos peli on käynnissä asetuksia 
-muutettaessa, otetaan uudet asetukset käyttöön silloinkin 
-välittömästi asetusikkunan sulkeuduttua.
-</p>
+		<h2 id="yleisesti">2. Ristinolla yleisesti</h2>
+		<p class="lead">
+		Ristinolla on kaksin pelattava peli. Pelissä on ruudukko, johon 
+		pelaajat vuorotellen merkitsevät pelimerkkinsä, toinen pelaaja ristin ja toinen 
+		ympyrän. Pelin tavoitteena on saada määrätyn pituinen peräkkäinen jono omia 
+		merkkejä. Jono voi olla vaakasuora, pystysuora tai vinosuora, ja jonon tulee olla
+		yhtenäinen. Ensimmäisenä vaaditun mittaisen rivin saava voittaa pelin. 
+		Jos ruudukko tulee täyteen ilman, että kumpikaan saa vaadittua riviä, päättyy peli tasan.
+		Pelin päättyessä vedetään viiva voittorivin päälle. Ristinollan yksi tyypillinen
+		esiintymä on 3 x 3 -kokoisella ruudulla pelattava versio, jossa voittoon tarvitaan
+		kolmen merkin jono. Toinen tavallinen tapa on viiden suora, jossa pelialue on mahdollisimman
+		suuri. Online-Ristinollalla voidaan peliasetusten muokkaamisen avulla pelata vapaasti
+		määriteltävää pelialuetta sekä voittomerkkien määrää.
+		</p>
 
-<h2 id="luonti">5. Luo uusi peli</h2>
-Uuden pelin voi luoda painamalla aloitusnäytöltä Luo uusi peli -nappia tai
-Alt + U -näppäinyhdistelmää. Eteen aukeaa dialogi, jossa voi päättää 
-pelissä käytettävän ruudukon koon sekä voittoon vaadittavan peräkkäisten 
-rivien pituuden. Alimpana on valittavana myös portti, johon palvelin
-luodaan. Porttina kannattaa käyttää suurempaa lukua kuin 1024.
-Jokaisen kentän oikealla puolella on kentän hyväksymät 
-lukuarvorajat. Jos kenttään syöttää tätä isomman arvon, tulee 
-kentän arvoksi suurin sallittu arvo. Jos kentän arvoksi laittaa
-liian pienen arvon, tulee arvoksi pienin sallittu arvo. Jos arvo 
-ei ole numero, muuttuu kenttä punaiseksi. Jos tällöin luodaan uusi 
-peli, on käytettävä arvo viimeisin hyväksytty arvo. Kenttä palautuu 
-valkoiseksi, kun siihen on laitettu hyvksytty arvo.
-</p>
+		<h2 id="aloittaminen">3. Pelin aloitus</h2>
+		<p class="lead">Ohjelma käynnistyy kaksoisklikkaamalla Online-Ristinollan kuvaketta työpöydällä.
+		Ensimmäisenä avautuu yllä oleva ohjelman päävalikko. Se jakautuu useaan osaan.
+		Tiedostovalikosta voi lopettaa pelin, asetusvalikosta voi säätää 
+		pelin ulkoasua, ja ohjevalikossa on kerrottu ohjelman perustiedot sekä
+		annettu linkki ohjeeseen. Alempana varsinaisessa peliruudussa 
+		on tekstikenttä, johon syötetään pelissä käytettävä nimimerkki.
+		Teksikentän alapuolella on kaksi nappia: Vasemmanpuoleinen avaa uuden pelin
+		luonnin tarjoavan dialogin ja oikeanpuoleinen valmiiseen peliin yhdistämisen 
+		mahdollistavan dialogin. Kaikilla napeilla on pikanäppäin, joka on 
+		muotoa Alt + kirjain. Painamalla Alt-näppäintä näkyy napeissa alleviivattuna 
+		Altin lisäksi tarvittava näppäin. Esciä painamalla ohjelma sulkeutuu.
+		</p>
 
-<p>
-Sopiva kentän koko normaalissa ristinollassa on usein 25 * 25. Mitä pienempi 
-näytön tarkkuus on käytössä, sitä huonommin ristikko mahtuu ruutuun. Liian tiiviiseen 
-ristikkoon jää hieman tilaa alareunaan ja oikealle puolelle. Ruutuja ei siis kannata 
-ottaa liian paljoa.
-</p>
+		<h2 id="ulkoasu">4. Ulkoasun muokkaus</h2>
+		<p class="lead">
+		Pelin ristinollaruudukon ulkoasua voi säätää. Aloitusikkunan 
+		tai varsinasen peli-ikkunan ollessa aktiivinen voi ylävalikosta 
+		asetukset-vetovalikosta avata ulkoasu-dialogin. Dialogin kuva on
+		yllä. Värin voi vaihtaa niin oman kuin vastustajan pelimerkistä, 
+		ruudukon pohjasta ja ruudukon viivoista. Jokaisen kohdan nykyinen väri
+		näkyy esimerkkinä väripaletissa. Tämän paletin oikealla puolella on
+		nappi, joka avaa värinvaihtodialogin. Kun asetukset on tehty, voi 
+		ikkunan sulkea esciä, yläreunan ristiä tai sulje-nappia 
+		painamalla. Kaikki muutetut asetukset otetaan käyttöön kaikissa
+		tapauksissa.
+		</p>
 
-<p>
-Peliä luotaessa mahdollinen palomuuri ei saa estää yhteyttä. Pelin käyttämän portin tulee myös olla auki.
-Palvelinta luodessa peli kertoo koneen ip-osoitteen. Tämä ip-osoite on usein juuri se, mitä vastapuolen
-tulisi käyttää yhdistämiseen. Jos kuitenkin palvelin on esimerkiksi kotireitittimen takana, ei kerrottu
-ip-osoite välttämättä ole oikea.
-</p>
+		<p class="lead">
+		Valitut asetukset tallennetaan muistiin ja ladataan seuraavan 
+		käynnistyksen yhteydessä. Jos peli on käynnissä asetuksia 
+		muutettaessa, otetaan uudet asetukset käyttöön silloinkin 
+		välittömästi asetusikkunan sulkeuduttua.
+		</p>
 
-<p>
-Ikkunan voi sulkea painamalla esciä tai päävalikkoon-napista, jos
-peliä ei ole vielä luotu. Kun luo peli -nappia painetaan, katoaa päävalikkoon 
-vievä nappi ja peli luodaan yllä annetuin asetuksin. Luo peli -napin paikalle 
-tulee peruuta-nappi, josta pelin luonnin voi peruuttaa. Myös escin painaminen 
-peruuttaa luonnin. Asetuksia ei voi muuttaa, kun peli on luotu ja odotetaan 
-vastapuolta. Kun joku yhdistää luotuun peliin, sulkeutuu dialogi itsestään 
-ja eteen avautuun ristinollaruudukko, jos versiot ovat molemmilla samat.
-</p>
+		<h2 id="luonti">5. Luo uusi peli</h2>
+		Uuden pelin voi luoda painamalla aloitusnäytöltä Luo uusi peli -nappia tai
+		Alt + U -näppäinyhdistelmää. Eteen aukeaa dialogi, jossa voi päättää 
+		pelissä käytettävän ruudukon koon sekä voittoon vaadittavan peräkkäisten 
+		rivien pituuden. Alimpana on valittavana myös portti, johon palvelin
+		luodaan. Porttina kannattaa käyttää suurempaa lukua kuin 1024.
+		Jokaisen kentän oikealla puolella on kentän hyväksymät 
+		lukuarvorajat. Jos kenttään syöttää tätä isomman arvon, tulee 
+		kentän arvoksi suurin sallittu arvo. Jos kentän arvoksi laittaa
+		liian pienen arvon, tulee arvoksi pienin sallittu arvo. Jos arvo 
+		ei ole numero, muuttuu kenttä punaiseksi. Jos tällöin luodaan uusi 
+		peli, on käytettävä arvo viimeisin hyväksytty arvo. Kenttä palautuu 
+		valkoiseksi, kun siihen on laitettu hyvksytty arvo.
+		</p>
 
-<p>
-Yhdistämisen jälkeen myös käytetyt asetukset tallennetaan. Käytetty portti 
-on seuraavalla kerralla oletusporttina myös peliin yhdistettäessä. Asetuksia 
-ei tallenneta, jos peliin ei yhdistä kukaan.
-</p>
+		<p class="lead">
+		Sopiva kentän koko normaalissa ristinollassa on usein 25 * 25. Mitä pienempi 
+		näytön tarkkuus on käytössä, sitä huonommin ristikko mahtuu ruutuun. Liian tiiviiseen 
+		ristikkoon jää hieman tilaa alareunaan ja oikealle puolelle. Ruutuja ei siis kannata 
+		ottaa liian paljoa.
+		</p>
 
-<h3 id="vaaraversiopalvelin">5.1 Väärä versio peliä luotaessa</h3>
+		<p class="lead">
+		Peliä luotaessa mahdollinen palomuuri ei saa estää yhteyttä. Pelin käyttämän portin tulee myös olla auki.
+		Palvelinta luodessa peli kertoo koneen ip-osoitteen. Tämä ip-osoite on usein juuri se, mitä vastapuolen
+		tulisi käyttää yhdistämiseen. Jos kuitenkin palvelin on esimerkiksi kotireitittimen takana, ei kerrottu
+		ip-osoite välttämättä ole oikea.
+		</p>
 
-<p>
-Jos versiot eivät täsmää, ilmoittaa peli siitä virhedialogilla. 
-OK:n painamisen jälkeen avautuu alkuvalikko. Virheen voi korjata 
-hankkimalla molemmille pelaajille saman version pelistä.
-</p>
+		<p class="lead">
+		Ikkunan voi sulkea painamalla esciä tai päävalikkoon-napista, jos
+		peliä ei ole vielä luotu. Kun luo peli -nappia painetaan, katoaa päävalikkoon 
+		vievä nappi ja peli luodaan yllä annetuin asetuksin. Luo peli -napin paikalle 
+		tulee peruuta-nappi, josta pelin luonnin voi peruuttaa. Myös escin painaminen 
+		peruuttaa luonnin. Asetuksia ei voi muuttaa, kun peli on luotu ja odotetaan 
+		vastapuolta. Kun joku yhdistää luotuun peliin, sulkeutuu dialogi itsestään 
+		ja eteen avautuun ristinollaruudukko, jos versiot ovat molemmilla samat.
+		</p>
 
-<h2 id="liittyminen">6. Liity luotuun peliin</h2>
-<p>
-Peliinliittymisikkunan saa näkyville painamalla aloitusnäytössä 
-Liity peliin -nappia tai Alt + P -näppäinyhdistelmää. Ikkunan voi sulkea
-painamalla esciä tai päävalikkoon-nappia. Ikkunassa 
-on kaksi muutettavaa kenttään. Ensimmäinen on osoite, johon yhdistetään.
-Tähän kenttään voi laittaa mitä merkkejä tahansa. Alempana on 
-portti, jota käytetään yhteydessä. Jos portiksi laitetaan alle nollan, 
-tulee portiksi nolla. Jos taas laitetaan yli oikealla puolella 
-ilmoitetun maksimin, tulee arvoksi maksimi. Jos syötteeksi annetaan
-jotain muuta kuin luku, muuttuu kenttä punaiseksi ja pysyy entinen 
-arvo paikallaan. Vasta kun kentässä on sallittu arvo, muutetaan se.
-Peliin voi yhdistää painamalla yhdistä-nappia. Tällöin etsitään peliä,
-ja jos sellainen löytyy, yritetään aloittaa peli kohteen kanssa.
-Jos pelin aloittaminen onnistuu, avautuu peliruudukko.
-</p>
+		<p class="lead">
+		Yhdistämisen jälkeen myös käytetyt asetukset tallennetaan. Käytetty portti 
+		on seuraavalla kerralla oletusporttina myös peliin yhdistettäessä. Asetuksia 
+		ei tallenneta, jos peliin ei yhdistä kukaan.
+		</p>
 
-<p>
-Peliin yhdistettäessä mahdollinen palomuuri ei saa estää yhteyttä. Pelin käyttämän portin tulee myös olla auki.
-</p>
+		<h3 id="vaaraversiopalvelin">5.1 Väärä versio peliä luotaessa</h3>
 
-<p>
-Peliin yhdistämisen jälkeen kaikki pelin luojan valitsemat 
-asetukset tallennetaan oletusasetuksiksi myös yhdistäjälle. 
-Myös valittu ip-osoite ja portti tallennetaan. Asetuksia ei 
-tallenneta, jos yhdistys ei onnistu.
-</p>
+		<p class="lead">
+		Jos versiot eivät täsmää, ilmoittaa peli siitä virhedialogilla. 
+		OK:n painamisen jälkeen avautuu alkuvalikko. Virheen voi korjata 
+		hankkimalla molemmille pelaajille saman version pelistä.
+		</p>
 
-<h3 id="vaaraversioasiakas">6.1 Väärä versio peliin yhdistettäessä</h3>
+		<h2 id="liittyminen">6. Liity luotuun peliin</h2>
+		<p class="lead">
+		Peliinliittymisikkunan saa näkyville painamalla aloitusnäytössä 
+		Liity peliin -nappia tai Alt + P -näppäinyhdistelmää. Ikkunan voi sulkea
+		painamalla esciä tai päävalikkoon-nappia. Ikkunassa 
+		on kaksi muutettavaa kenttään. Ensimmäinen on osoite, johon yhdistetään.
+		Tähän kenttään voi laittaa mitä merkkejä tahansa. Alempana on 
+		portti, jota käytetään yhteydessä. Jos portiksi laitetaan alle nollan, 
+		tulee portiksi nolla. Jos taas laitetaan yli oikealla puolella 
+		ilmoitetun maksimin, tulee arvoksi maksimi. Jos syötteeksi annetaan
+		jotain muuta kuin luku, muuttuu kenttä punaiseksi ja pysyy entinen 
+		arvo paikallaan. Vasta kun kentässä on sallittu arvo, muutetaan se.
+		Peliin voi yhdistää painamalla yhdistä-nappia. Tällöin etsitään peliä,
+		ja jos sellainen löytyy, yritetään aloittaa peli kohteen kanssa.
+		Jos pelin aloittaminen onnistuu, avautuu peliruudukko.
+		</p>
 
-<p>
-Jos versiot eivät täsmää, ilmoittaa peli siitä virhedialogilla. 
-OK:n painamisen jälkeen avautuu alkuvalikko. Virheen voi korjata 
-hankkimalla molemmille pelaajille saman version pelistä.
-</p>
+		<p class="lead">
+		Peliin yhdistettäessä mahdollinen palomuuri ei saa estää yhteyttä. Pelin käyttämän portin tulee myös olla auki.
+		</p>
 
-<h2 id="pelitila">7. Pelitila</h2>
-<p>
-Kun peli on saatu luotua, ja siihen on yhdistänyt joku, avautuu 
-varsinainen pelitila. Siinä aivan yläosassa on tieto, kenen vuoro 
-on menossa tai pelin päättymisestä. Ylhäällä on myös pelin lopettava
-päävalikkoon vievä nappi tai pelatun pelin jälkeen revanssiehdotuksen
-hyväksymiseen ja hylkäämiseen napit. Jos jompikumpi pelaaja lopettaa 
-pelin kesken, ilmoitetaan siitä vastapuolelle. Myös revanssivastauksesta 
-ilmoitetaan vastapuolelle. Revanssia voi ehdottaa vain, jos vastapuoli 
-ei ole torjunut vielä sitä.
-</p>
+		<p class="lead">
+		Peliin yhdistämisen jälkeen kaikki pelin luojan valitsemat 
+		asetukset tallennetaan oletusasetuksiksi myös yhdistäjälle. 
+		Myös valittu ip-osoite ja portti tallennetaan. Asetuksia ei 
+		tallenneta, jos yhdistys ei onnistu.
+		</p>
 
-<p>
-Peli-ikkunan alareunassa on viesti-ikkuna. Siihen laitetaan tieto, jos
-vastustaja poistuu pelistä tai hyväksyy revanssin. Viesti-ikkunassa näytetään 
-myös kaikki lähetetyt viestit. Viestin voi lähettää kirjoittamalla viesti-ikkunan
-alapuolella olevaan tekstikenttään halutun viestin ja painamalla Enteriä tai
-oikean reunan lähetysnappia. Viesti-ikkuna tyhjennetään alkuvalikkoon palattaessa.
-</p>
+		<h3 id="vaaraversioasiakas">6.1 Väärä versio peliin yhdistettäessä</h3>
 
-<h2 id="samakone">8. Pelaaminen samalla koneella</h2>
+		<p class="lead">
+		Jos versiot eivät täsmää, ilmoittaa peli siitä virhedialogilla. 
+		OK:n painamisen jälkeen avautuu alkuvalikko. Virheen voi korjata 
+		hankkimalla molemmille pelaajille saman version pelistä.
+		</p>
 
-<p>Vaikka Online-Ristinolla on suunniteltu pelattavaksi netissä, voi sitä 
-välttävästi ja testaamismielessä pelata myös samalla koneella. Tällöin on vain avattava peli
-samalle koneelle kaksi kertaa. Toisessa esiintymässä luodaan peli, toisessa
-yhdistetään osoitteeseen 127.0.0.1. Tällöin toinen pelaaja tekee siirtonsa
-toiseen esiintymään ja toinen toiseen.
-</p>
+		<h2 id="pelitila">7. Pelitila</h2>
+		<p class="lead">
+		Kun peli on saatu luotua, ja siihen on yhdistänyt joku, avautuu 
+		varsinainen pelitila. Siinä aivan yläosassa on tieto, kenen vuoro 
+		on menossa tai pelin päättymisestä. Ylhäällä on myös pelin lopettava
+		päävalikkoon vievä nappi tai pelatun pelin jälkeen revanssiehdotuksen
+		hyväksymiseen ja hylkäämiseen napit. Jos jompikumpi pelaaja lopettaa 
+		pelin kesken, ilmoitetaan siitä vastapuolelle. Myös revanssivastauksesta 
+		ilmoitetaan vastapuolelle. Revanssia voi ehdottaa vain, jos vastapuoli 
+		ei ole torjunut vielä sitä.
+		</p>
 
-</body></html>
+		<p class="lead">
+		Peli-ikkunan alareunassa on viesti-ikkuna. Siihen laitetaan tieto, jos
+		vastustaja poistuu pelistä tai hyväksyy revanssin. Viesti-ikkunassa näytetään 
+		myös kaikki lähetetyt viestit. Viestin voi lähettää kirjoittamalla viesti-ikkunan
+		alapuolella olevaan tekstikenttään halutun viestin ja painamalla Enteriä tai
+		oikean reunan lähetysnappia. Viesti-ikkuna tyhjennetään alkuvalikkoon palattaessa.
+		</p>
+
+		<h2 id="samakone">8. Pelaaminen samalla koneella</h2>
+
+		<p class="lead">Vaikka Online-Ristinolla on suunniteltu pelattavaksi netissä, voi sitä 
+		välttävästi ja testaamismielessä pelata myös samalla koneella. Tällöin on vain avattava peli
+		samalle koneelle kaksi kertaa. Toisessa esiintymässä luodaan peli, toisessa
+		yhdistetään osoitteeseen 127.0.0.1. Tällöin toinen pelaaja tekee siirtonsa
+		toiseen esiintymään ja toinen toiseen.
+		</p>
+		</div>
+		</div>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="../js/bootstrap.min.js"></script>
+	</body>
+</html>
